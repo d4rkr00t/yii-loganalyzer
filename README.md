@@ -12,17 +12,20 @@
 Выводим виджет в представлении:
 
 ```php
+<?php
 $this->widget('ext.loganalyzer.LogAnalyzerWidget',
     array( 'filters' => array('Текст для фильтрации','И еще одно'),
            'title' => 'Анализатор логов' // заголовок виджета
            // 'log_file_path' => 'Абсолютный путь до файла лога'
     ));  
+?>
 ```
 ## Дополнительно:
 
 Так же в расширении есть расширенный маршурт для логов, добавляющий в сообщения логера ip клиента. Подключается так:
 
 ```php
+<?php
 'log'=>array(
     'class'=>'CLogRouter',
     'routes'=>array(
@@ -34,4 +37,5 @@ $this->widget('ext.loganalyzer.LogAnalyzerWidget',
         ...
     ),
 ),
+?>
 ```
