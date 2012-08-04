@@ -1,28 +1,28 @@
-#Yii LogAnalyzer - Анализатор лог файлов yii
+#Yii LogAnalyzer - Log file analyzer yii
 
 ## Features:
-- Легкое подключение к проекту
-- Вывод сообщений из файла лога
-- Фильтрация сообщений лога (удалений ненужных сообщений из выдачи)
-- Фильтрация вывода лога (вывод только error, warning или info)
-- Очистка файла лога
+- Easy connection to the project
+- Output messages from the log file
+- Filter log messages (Remove unwanted messages from issuance)
+- Filter log output (output only error, warning or info)
+- Cleaning the log file
 
-## Пример:
+## Example:
 
-Выводим виджет в представлении:
+Print out the widget in the view:
 
 ```php
 <?php
-$this->widget('ext.loganalyzer.LogAnalyzerWidget',
-    array( 'filters' => array('Текст для фильтрации','И еще одно'),
-           'title' => 'Анализатор логов' // заголовок виджета
-           // 'log_file_path' => 'Абсолютный путь до файла лога'
+$this->widget('ext.loganalyzer.LogAnalyzerWidget', array(
+        'filters' => array('Text filtering','One more'),
+        'title'   => 'Title of the widget' ,
+        // 'log_file_path' => 'Absolute path of the Log File',
     ));  
 ?>
 ```
-## Дополнительно:
+In addition:
 
-Так же в расширении есть расширенный маршурт для логов, добавляющий в сообщения логера ip клиента. Подключается так:
+Also in the expansion is extended to marshurt logs, which adds to the message logger ip client. Connect as follows:
 
 ```php
 <?php
@@ -31,8 +31,9 @@ $this->widget('ext.loganalyzer.LogAnalyzerWidget',
     'routes'=>array(
         ....
         array(
-            'class'=>'ext.yii-loganalyzer.LALogRoute',
+            'class'=>'ext.loganalyzer.LALogRoute',
             'levels'=>'info, error, warning',
+            ... 
         ),
         ...
     ),
@@ -40,6 +41,6 @@ $this->widget('ext.loganalyzer.LogAnalyzerWidget',
 ?>
 ```
 
-## Скриншот:
+## Screenshot:
 
-![Вывод лога](https://raw.github.com/d4rkr00t/yii-loganalyzer/master/screenshot.jpg "Вывод лога")
+![Log output](https://raw.github.com/tonybolzan/yii-loganalyzer/master/screenshot.jpg "Display log")
