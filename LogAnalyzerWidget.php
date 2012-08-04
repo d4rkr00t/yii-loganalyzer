@@ -1,22 +1,23 @@
 <?php
 /**
- * LogAnalyzerWidget
+ * LogAnalyzerWidget class file.
  *
- * @author Stanislav Sysoev <d4rkr00t@mail.ru>
- * @link 
+ * Forked from:
+ *    https://github.com/d4rkr00t/yii-loganalyzer
+ *    Stanislav Sysoev <d4rkr00t@mail.ru>
+ * 
+ * @author Tonin R. Bolzan <admin@tonybolzan.com>
+ * @copyright 2012, Odig Marketing Digital <odig.net>
  * @license http://www.opensource.org/licenses/bsd-license.php
+ * @version 0.1
  */
 
-/**
- * The LogAnalyzerWidget show file log
- * @package application.extensions.loganalyzer
- */
 class LogAnalyzerWidget extends CWidget {
     public $filters = array();
 
     public $log_file_path;
 
-    public $title = 'Анализатор логов';
+    public $title = 'Log Analyzer';
 
     private $last_status;
 
@@ -25,7 +26,7 @@ class LogAnalyzerWidget extends CWidget {
         parent::init();
 
         if (!$this->log_file_path) {
-            $this->log_file_path = $_SERVER['DOCUMENT_ROOT'].'/protected/runtime/application.log';
+            $this->log_file_path = Yii::app()->getRuntimePath().DIRECTORY_SEPARATOR.'application.log';
         }
     }
 
@@ -52,7 +53,9 @@ class LogAnalyzerWidget extends CWidget {
 
         $this->registerAssets();
 
-        $this->render('index', array('log'=>$log));
+        $this->render('index', array(
+            'log' => $log
+        ));
     }
 
     /**
@@ -64,7 +67,12 @@ class LogAnalyzerWidget extends CWidget {
 
         $assets_path = dirname(__FILE__).DIRECTORY_SEPARATOR.'assets';
         $url = Yii::app()->assetManager->publish($assets_path, false, -1, YII_DEBUG);
-        $cs->registerCssFile($url.'/log.css');
+        
+        if (defined('DEBUG')) {
+            $cs->registerCssFile($url.'/log.css');
+        } else {
+            $cs->registerCssFile($url.'/log.min.css');
+        }
     }
 
 

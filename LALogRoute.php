@@ -1,56 +1,18 @@
 <?php
 /**
- * CFileLogRoute class file.
+ * LALogRoute class file.
  *
- * @author Qiang Xue <qiang.xue@gmail.com>
- * @link http://www.yiiframework.com/
- * @copyright Copyright &copy; 2008-2011 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
-
-/**
- * CFileLogRoute records log messages in files.
- *
- * The log files are stored under {@link setLogPath logPath} and the file name
- * is specified by {@link setLogFile logFile}. If the size of the log file is
- * greater than {@link setMaxFileSize maxFileSize} (in kilo-bytes), a rotation
- * is performed, which renames the current log file by suffixing the file name
- * with '.1'. All existing log files are moved backwards one place, i.e., '.2'
- * to '.3', '.1' to '.2'. The property {@link setMaxLogFiles maxLogFiles}
- * specifies how many files to be kept.
- *
- * @property string $logPath Directory storing log files. Defaults to application runtime path.
- * @property string $logFile Log file name. Defaults to 'application.log'.
- * @property integer $maxFileSize Maximum log file size in kilo-bytes (KB). Defaults to 1024 (1MB).
- * @property integer $maxLogFiles Number of files used for rotation. Defaults to 5.
- *
- * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: CFileLogRoute.php 3426 2011-10-25 00:01:09Z alexander.makarow $
- * @package system.logging
- * @since 1.0
+ * Forked from:
+ *    https://github.com/d4rkr00t/yii-loganalyzer
+ *    Stanislav Sysoev <d4rkr00t@mail.ru>
+ * 
+ * @author Tonin R. Bolzan <admin@tonybolzan.com>
+ * @copyright 2012, Odig Marketing Digital <odig.net>
+ * @license http://www.opensource.org/licenses/bsd-license.php
+ * @version 0.1
  */
 class LALogRoute extends CFileLogRoute
 {
-    /**
-     * Saves log messages in files.
-     * @param array $logs list of log messages
-     */
-    protected function processLogs($logs)
-    {
-        $logFile=$this->getLogPath().DIRECTORY_SEPARATOR.$this->getLogFile();
-        if(@filesize($logFile)>$this->getMaxFileSize()*1024)
-            $this->rotateFiles();
-        $fp=@fopen($logFile,'a');
-        @flock($fp,LOCK_EX);
-
-        foreach($logs as $log) {
-            @fwrite($fp,$this->formatLogMessage($log[0],$log[1],$log[2],$log[3]));
-        }
-
-        @flock($fp,LOCK_UN);
-        @fclose($fp);
-    }
-
     /**
      * Formats a log message given different fields.
      * @param string $message message content
@@ -65,7 +27,7 @@ class LALogRoute extends CFileLogRoute
         if ($ip) {
             return @date('Y/m/d H:i:s',$time)." [ip:".$ip."] [$level] [$category] $message\n";
         } else {
-            return @date('Y/m/d H:i:s',$time)." [$level] [$category] $message\n";
+            parent::formatLogMessage($message, $level, $category, $time);
         }
         
     }

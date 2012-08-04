@@ -1,4 +1,4 @@
-#Yii LogAnalyzer - Log file analyzer yii
+#Yii LogAnalyzer - Log file analyzer for Yii
 
 ## Features:
 - Easy connection to the project
@@ -43,4 +43,4 @@ Also in the expansion is extended to marshurt logs, which adds to the message lo
 
 ## Screenshot:
 
-![Log output](https://raw.github.com/tonybolzan/yii-loganalyzer/master/screenshot.jpg "Display log")
+![Log output](https://raw.github.com/tonybolzan/yii-loganalyzer/master/screenshot.png "Display log")
