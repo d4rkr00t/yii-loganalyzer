@@ -41,14 +41,13 @@ class LALogRoute extends CFileLogRoute
         if(@filesize($logFile)>$this->getMaxFileSize()*1024)
             $this->rotateFiles();
         $fp=@fopen($logFile,'a');
-        // @flock($fp,LOCK_EX);
+        @flock($fp,LOCK_EX);
 
         foreach($logs as $log) {
             @fwrite($fp,$this->formatLogMessage($log[0],$log[1],$log[2],$log[3]));
-            // @fwrite($fp,"\n123 123 12kj3k12j3 k1l23jk12j31l2;k3j 1k2l;j3 kl12;j3 12kl3j \n---");
         }
 
-        // @flock($fp,LOCK_UN);
+        @flock($fp,LOCK_UN);
         @fclose($fp);
     }
 
