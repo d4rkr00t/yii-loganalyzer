@@ -2,14 +2,10 @@
 /**
  * LogAnalyzerWidget class file.
  *
- * Forked from:
- *    https://github.com/d4rkr00t/yii-loganalyzer
- *    Stanislav Sysoev <d4rkr00t@mail.ru>
  * 
- * @author Tonin R. Bolzan <admin@tonybolzan.com>
- * @copyright 2012, Odig Marketing Digital <odig.net>
+ * @author Stanislav Sysoev <d4rkr00t@gmial.com>
  * @license http://www.opensource.org/licenses/bsd-license.php
- * @version 0.1
+ * @version 0.2
  */
 
 class LogAnalyzerWidget extends CWidget {
@@ -17,9 +13,11 @@ class LogAnalyzerWidget extends CWidget {
 
     public $log_file_path;
 
-    public $title = 'Log Analyzer';
+    public $title;
 
     private $last_status;
+
+    protected $_path = 'ext.loganalyzer.';
 
     public function init()
     {
@@ -28,22 +26,29 @@ class LogAnalyzerWidget extends CWidget {
         if (!$this->log_file_path) {
             $this->log_file_path = Yii::app()->getRuntimePath().DIRECTORY_SEPARATOR.'application.log';
         }
+
     }
 
     public function run()
     {
+        Yii::import($this->_path.'LogAnalyzer');
+        /**
+         * Set widget title
+         */
+        $this->title = Yii::t('LogAnalyzer.main', 'Log Analyzer');
+
         if (isset($_GET['log'])) {
             file_put_contents($this->log_file_path, '');
             Yii::app()->controller->redirect($this->getUrl(false));
         }
         
         /**
-         * Загружаем лог
+         * Load log file
          */
         $log = file_get_contents($this->log_file_path);
 
         /**
-         * Разбиваем лог на сообщения
+         * Explode log on messages
          */
         $log = explode('---', $log);
 
@@ -68,7 +73,7 @@ class LogAnalyzerWidget extends CWidget {
         $assets_path = dirname(__FILE__).DIRECTORY_SEPARATOR.'assets';
         $url = Yii::app()->assetManager->publish($assets_path, false, -1, YII_DEBUG);
         
-        if (defined('DEBUG')) {
+        if (defined('YII_DEBUG')) {
             $cs->registerCssFile($url.'/log.css');
         } else {
             $cs->registerCssFile($url.'/log.min.css');

@@ -1,15 +1,10 @@
 <?php
 /**
  * LALogRoute class file.
- *
- * Forked from:
- *    https://github.com/d4rkr00t/yii-loganalyzer
- *    Stanislav Sysoev <d4rkr00t@mail.ru>
  * 
- * @author Tonin R. Bolzan <admin@tonybolzan.com>
- * @copyright 2012, Odig Marketing Digital <odig.net>
+ * @author Stanislav Sysoev <d4rkr00t@gmial.com>
  * @license http://www.opensource.org/licenses/bsd-license.php
- * @version 0.1
+ * @version 0.2
  */
 class LALogRoute extends CFileLogRoute
 {

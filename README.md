@@ -1,28 +1,29 @@
-#Yii LogAnalyzer - Log file analyzer for Yii
+#Yii LogAnalyzer - Анализатор лог файлов yii
 
 ## Features:
-- Easy connection to the project
-- Output messages from the log file
-- Filter log messages (Remove unwanted messages from issuance)
-- Filter log output (output only error, warning or info)
-- Cleaning the log file
+- Легкое подключение к проекту
+- Вывод сообщений из файла лога
+- Фильтрация сообщений лога (удалений ненужных сообщений из выдачи)
+- Фильтрация вывода лога (вывод только error, warning или info)
+- Очистка файла лога
+- Многоязычность (русский, английский)
 
-## Example:
+## Пример:
 
-Print out the widget in the view:
+Выводим виджет в представлении:
 
 ```php
 <?php
-$this->widget('ext.loganalyzer.LogAnalyzerWidget', array(
-        'filters' => array('Text filtering','One more'),
-        'title'   => 'Title of the widget' ,
-        // 'log_file_path' => 'Absolute path of the Log File',
+$this->widget('ext.loganalyzer.LogAnalyzerWidget',
+    array( 'filters' => array('Текст для фильтрации','И еще одно'),
+           'title' => 'Анализатор логов' // заголовок виджета
+           // 'log_file_path' => 'Абсолютный путь до файла лога'
     ));  
 ?>
 ```
-In addition:
+## Дополнительно:
 
-Also in the expansion is extended to marshurt logs, which adds to the message logger ip client. Connect as follows:
+Так же в расширении есть расширенный маршурт для логов, добавляющий в сообщения логера ip клиента. Подключается так:
 
 ```php
 <?php
@@ -31,9 +32,8 @@ Also in the expansion is extended to marshurt logs, which adds to the message lo
     'routes'=>array(
         ....
         array(
-            'class'=>'ext.loganalyzer.LALogRoute',
+            'class'=>'ext.yii-loganalyzer.LALogRoute',
             'levels'=>'info, error, warning',
-            ... 
         ),
         ...
     ),
@@ -41,6 +41,24 @@ Also in the expansion is extended to marshurt logs, which adds to the message lo
 ?>
 ```
 
-## Screenshot:
+## Скриншот:
 
-![Log output](https://raw.github.com/tonybolzan/yii-loganalyzer/master/screenshot.png "Display log")
+![Вывод лога](https://raw.github.com/d4rkr00t/yii-loganalyzer/master/screenshot.jpg "Вывод лога")
+
+## Благодарности
+
+Спасибо [Tonin De Rosso Bolzan](https://github.com/tonybolzan):
+
+Перевод на английский
+
+Оптимизация javascript:
+
+- эффекты
+- подтверждение очистки лога
+- Показать/Скрыть Stack Trace
+
+Оптимизация PHP кода:
+
+- удален дублирующий метод "processLogs()" из LALogRoute
+- изменено получение пути по-умолчанию до лога,"log_file_path", берет данные из Yii::app()->getRuntimePath()
+
