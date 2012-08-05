@@ -23,19 +23,23 @@ class LogAnalyzerWidget extends CWidget {
     {
         parent::init();
 
+        Yii::import($this->_path.'LogAnalyzer');
+
         if (!$this->log_file_path) {
             $this->log_file_path = Yii::app()->getRuntimePath().DIRECTORY_SEPARATOR.'application.log';
+        }
+
+        /**
+         * Set widget title
+         */
+        if (!$this->title) {
+            $this->title = Yii::t('LogAnalyzer.main', 'Log Analyzer');
         }
 
     }
 
     public function run()
     {
-        Yii::import($this->_path.'LogAnalyzer');
-        /**
-         * Set widget title
-         */
-        $this->title = Yii::t('LogAnalyzer.main', 'Log Analyzer');
 
         if (isset($_GET['log'])) {
             file_put_contents($this->log_file_path, '');
