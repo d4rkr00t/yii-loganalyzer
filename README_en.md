@@ -44,7 +44,7 @@ Also in the expansion is extended to marshurt logs, which adds to the message lo
 
 ## Screenshot:
 
-![Log output](https://raw.github.com/tonybolzan/yii-loganalyzer/master/screenshot.png "Display log")
+![Log output](https://raw.github.com/d4rkr00t/yii-loganalyzer/master/screenshot.png "Display log")
 
 ##Acknowledgments
 

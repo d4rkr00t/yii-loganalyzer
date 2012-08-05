@@ -43,7 +43,7 @@ $this->widget('ext.loganalyzer.LogAnalyzerWidget',
 
 ## Скриншот:
 
-![Вывод лога](https://raw.github.com/d4rkr00t/yii-loganalyzer/master/screenshot.jpg "Вывод лога")
+![Вывод лога](https://raw.github.com/d4rkr00t/yii-loganalyzer/master/screenshot.png "Вывод лога")
 
 ## Благодарности
 
