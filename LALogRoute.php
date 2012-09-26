@@ -23,6 +23,9 @@ class LALogRoute extends CFileLogRoute
      */
     protected function formatLogMessage($message,$level,$category,$time)
     {
+        // Creating my own delimiter
+        $message .= '.-==-.';
+        
         $ip = @$this->get_ip();
         if ($ip) {
             return @date('Y/m/d H:i:s',$time)." [ip:".$ip."] [$level] [$category] $message\n";

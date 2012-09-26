@@ -45,7 +45,7 @@ class LogAnalyzerWidget extends CWidget {
         /**
          * Разбиваем лог на сообщения
          */
-        $log = explode('---', $log);
+        $log = explode('.-==-.', $log);
 
         $pop = array_pop($log);
 
