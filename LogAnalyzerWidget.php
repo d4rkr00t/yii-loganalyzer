@@ -114,13 +114,13 @@ class LogAnalyzerWidget extends CWidget {
 
     public function showStatus($text)
     {
-        if (preg_match('[error]',$text)) {
+        if (preg_match('%\[error\]%',$text)) {
             $this->last_status = '[error]';
             return array('status'=>'error', 'class'=>'label-important');
-        } elseif (preg_match('[warning]',$text)) {
+        } elseif (preg_match('%\[warning\]%',$text)) {
             $this->last_status = '[warning]';
             return array('status'=>'warning', 'class'=>'label-warning');
-        } elseif (preg_match('[info]',$text)) {
+        } elseif (preg_match('%\[info\]%',$text)) {
             $this->last_status = '[info]';
             return array('status'=>'info', 'class'=>'label-info');
         }else {
