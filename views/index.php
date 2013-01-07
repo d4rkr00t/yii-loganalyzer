@@ -1,5 +1,5 @@
 <?php
-Yii::app()->clientScript->registerScript('tabs', <<<JS
+Yii::app()->clientScript->registerScript('tabs', "
 (function($){
     $('.loganalyzer').on('click','.stack-btn',function(e){
         $(this).nextAll('.stack-pre').slideToggle('fast');
@@ -20,7 +20,7 @@ Yii::app()->clientScript->registerScript('tabs', <<<JS
     });
     
     $('#clear').click(function(e){
-        if(!confirm('Deseja apagar o conteudo do Log ?')) {
+        if(!confirm('".Yii::t('LogAnalyzer.main', 'Are you sure you want to clear a log file?')."')) {
             e.preventDefault();
             return false;
         }
@@ -54,7 +54,7 @@ Yii::app()->clientScript->registerScript('tabs', <<<JS
         return false;
     });
 })(jQuery);
-JS
+"
 );
 ?>
 
@@ -62,19 +62,26 @@ JS
     <div class="page-header">
         <h1><?php echo $this->title; ?></h1>
     </div>
-    
-    <div class="row-fluid">
-        <a href="<?php echo $this->getUrl(); ?>" id="clear"><span class="label">Clear Log</span></a>
-        Log Filter:
-        <a href="#" class="filter-log" rel='all'><span class="label label-inverse">All</span></a>
+
+    <div class="row-fluid log-actions-bar">
+        <a href="<?php echo $this->getUrl(); ?>" id="clear"><span class="label"><?php echo Yii::t('LogAnalyzer.main', 'Clear Log') ?></span></a>
+
+        <span class="sep"></span>
+
+        <?php echo Yii::t('LogAnalyzer.main', 'Log Filter') ?>:
+        <a href="#" class="filter-log" rel='all'><span class="label label-inverse"><?php echo Yii::t('LogAnalyzer.main', 'All') ?></span></a>
         <a href="#" class="filter-log" rel='error'><span class="label label-important">[error]</span></a>
         <a href="#" class="filter-log" rel='warning'><span class="label label-warning">[warning]</span></a>
         <a href="#" class="filter-log" rel='info'><span class="label label-info">[info]</span></a>
+
+        <span class="sep"></span>
+
         Stack Trace:
-        <a href="#" id="stack-showall"><span class="label">Show All</span></a>
-        <a href="#" id="stack-collapseall"><span class="label">Collapse All</span></a>
+        <a href="#" id="stack-showall"><span class="label"><?php echo Yii::t('LogAnalyzer.main', 'Show All') ?></span></a>
+        <a href="#" id="stack-collapseall"><span class="label"><?php echo Yii::t('LogAnalyzer.main', 'Collapse All') ?></span></a>
         <hr>
     </div>
+
 
     <div class="row-fluid log-list" style="word-wrap: break-word;">
         <?php
@@ -86,7 +93,7 @@ JS
                 <div class="line <?= ($flag = !$flag) ? 'odd' : '' ?> <?php echo $status['status'] ?>-line">
                     <span class="label label-info"><?php echo $this->showDate($l); ?></span>                    
                     <span class="label <?php echo $status['class'] ?>">[<?php echo $status['status']; ?>]</span>
-                    <a href="#" class="stack-btn"><span class="label label-inverse">Show Stack trace</span></a>
+                    <a href="#" class="stack-btn"><span class="label label-inverse"><?php echo Yii::t('LogAnalyzer.main', 'Show') ?> Stack trace</span></a>
                     
                     <pre><?php echo $this->showError($l); ?></pre>
                     <pre class="stack-pre" style="display:none;"><?php echo $this->showStack($l); ?></pre>

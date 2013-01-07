@@ -146,6 +146,10 @@
     clear: both;
 }
 
+.loganalyzer .log-actions-bar span.sep{
+    margin: 0 9px;
+}
+
 @media (min-width: 1200px) {
     .loganalyzer .row-fluid::before, .loganalyzer .row-fluid::after {
         display: table;
