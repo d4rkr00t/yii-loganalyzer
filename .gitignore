@@ -1,0 +1,17 @@
+# MAC
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+.com.apple*
+
+# VIM
+.*.sw[a-z]
+*.un~
+Session.vim
+
+# LINUX
+*~
+
+# NETBEANS
+nbproject
