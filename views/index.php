@@ -20,7 +20,7 @@ Yii::app()->clientScript->registerScript('tabs', "
     });
     
     $('#clear').click(function(e){
-        if(!confirm('".Yii::t('LogAnalyzer.main', 'Are you sure you want to clear a log file?')."')) {
+        if(!confirm('".Yii::t('LogAnalyzer.main', 'Are you sure you want to clear this log file?')."')) {
             e.preventDefault();
             return false;
         }
